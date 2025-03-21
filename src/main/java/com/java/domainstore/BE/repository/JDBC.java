@@ -11,7 +11,7 @@ public class JDBC {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             
-            String url = "jdbc:mysql://localhost:3306/domainstore";
+            String url = "jdbc:mysql://localhost:3306/domainmanagement";
             String username = "root";
             String password = "123456";
             

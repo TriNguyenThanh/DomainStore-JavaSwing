@@ -1,71 +1,195 @@
 package com.java.domainstore.DuongTan;
 
+import com.java.domainstore.BE.model.DomainModel;
+import com.java.domainstore.BE.dao.CustomerDAO;
+import com.java.domainstore.BE.dao.DomainDAO;
+import com.java.domainstore.BE.dao.TopLevelDomainDAO;
 import com.java.domainstore.BE.model.CustomerModel;
-import com.java.domainstore.BE.model.enums.Role;
-import com.java.domainstore.FE.view.swing.fLogin;
+import com.java.domainstore.BE.model.DomainModel;
+import com.java.domainstore.BE.model.TopLevelDomainModel;
+import com.java.domainstore.utils.PasswordUtils;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class testCustomerDAO {
 
-    public static void CustomerDAOTest(int i) {
+    public static void customerDAOTest(int i) {
         CustomerDAO customerDAO = CustomerDAO.getInstance();
 
         switch (i) {
             case 1:
-                //  Thêm khách hàng mới
-                CustomerModel newCustomer = new CustomerModel(null, "Test User", 
-                        Date.valueOf("1997-03-03"), "082265718564", "Bến Tre", 
-                        "testuser@gmail.com", "0327876533", "passasd", "", Role.user);
+                // Thêm người dùng mới với mật khẩu đã băm
+                String plainPassword = "passasd";
+                String hashedPassword = PasswordUtils.hashedPassword(plainPassword); 
 
-                int insertResult = customerDAO.insert(newCustomer);
+                CustomerModel newUser = new CustomerModel(
+                    0, "Test User", "testuser@gmail.com", 
+                    "0327876533", "082265718564", hashedPassword, 
+                    CustomerModel.Role.user, new Timestamp(System.currentTimeMillis())
+                );
+
+                int insertResult = customerDAO.insert(newUser);
+                System.out.println("Insert User: " + insertResult);
                 break;
 
             case 2:
-                //  Lấy danh sách tất cả khách hàng
-                List<CustomerModel> customers = customerDAO.selectAll();
-                System.out.println("Danh sách khách hàng:");
-                for (CustomerModel kh : customers) {
-                    System.out.println(kh);
+                //  Lấy danh sách tất cả người dùng
+                List<CustomerModel> users = customerDAO.selectAll();
+                System.out.println("Danh sách người dùng:");
+                for (CustomerModel user : users) {
+                    System.out.println(user);
                 }
                 break;
-
+            
             case 3:
-                // Tìm khách hàng theo ID
-                String customerId = "KH001";
-                CustomerModel findCustomer = new CustomerModel(customerId, "", null, "", "", "", "", "", "", Role.user);
-                CustomerModel result = customerDAO.selectById(findCustomer);
+                // Tìm người dùng theo ID
+                CustomerModel findUser = new CustomerModel(1, "", "", "", "", "",CustomerModel.Role.user, null);
+                CustomerModel result = customerDAO.selectById(findUser);
+                System.out.println("User found: " + result);
                 break;
-
+            
             case 4:
-                //  Cập nhật thông tin khách hàng
-                CustomerModel updateCustomer = new CustomerModel("KH006", "Nguyễn Văn A",
-                        Date.valueOf("2000-01-01"), "123456789012", "Hà Nội",
-                        "nguyenvana@gmail.com", "0912345678", "newpassword", "", Role.user);
-
-                int updateResult = customerDAO.update(updateCustomer);
+                // Cập nhật thông tin người dùng
+                CustomerModel updateUser = new CustomerModel(1, "Updated User", "updated@gmail.com", "0987654321", "123456789012", "newpassword", CustomerModel.Role.admin, new Timestamp(System.currentTimeMillis()));
+                int updateResult = customerDAO.update(updateUser);
+                System.out.println("Update User: " + updateResult);
                 break;
-
+            
             case 5:
-                //  Xóa khách hàng
-                String deleteId = "KH006";
-                CustomerModel deleteCustomer = new CustomerModel(deleteId, "", null, "", "", "", "", "", "", Role.user);
-                int deleteResult = customerDAO.delete(deleteCustomer);
+                // Xóa người dùng
+                CustomerModel deleteUser = new CustomerModel(4, "", "", "", "", "", CustomerModel.Role.user, null);
+                int deleteResult = customerDAO.delete(deleteUser);
+                System.out.println("Delete User: " + deleteResult);
                 break;
         }
     }
 
+public static void domainDAOTest(int i) {
+        DomainDAO domainDAO = DomainDAO.getInstance();
+
+        switch (i) {
+            case 1:
+                // Thêm domain mới
+                DomainModel newDomain = new DomainModel(
+                        0, 
+                        "example.com", 
+                        1, 
+                        DomainModel.DomainStatusEnum.AVAILABLE, 
+                        new Date(System.currentTimeMillis()), // active_date
+                        2, 
+                        1, 
+                        new Date(System.currentTimeMillis()) // created_at
+                );
+                int insertDomainResult = domainDAO.insert(newDomain);
+                System.out.println("Insert Domain: " + (insertDomainResult > 0 ? "Success" : "Failed"));
+                break;
+
+            case 2:
+                // Lấy danh sách tất cả domains
+                List<DomainModel> domains = domainDAO.selectAll();
+                System.out.println("Danh sách domains:");
+                for (DomainModel domain : domains) {
+                    System.out.println(domain);
+                }
+                break;
+            
+            case 3:
+                // Tìm domain theo ID
+                DomainModel findDomain = new DomainModel(1, "", 0, null, null, 0, null, null);
+                DomainModel domainResult = domainDAO.selectById(findDomain);
+                System.out.println("Domain found: " + (domainResult != null ? domainResult : "Not found"));
+                break;
+            
+            case 4:
+                // Cập nhật thông tin domain
+                DomainModel updateDomain = new DomainModel(
+                        1, 
+                        "updated-example.com", 
+                        1, 
+                        DomainModel.DomainStatusEnum.SOLD, 
+                        new Date(System.currentTimeMillis()), 
+                        3, 
+                        2, 
+                        new Date(System.currentTimeMillis()) 
+                );
+                int updateDomainResult = domainDAO.update(updateDomain);
+                System.out.println("Update Domain: " + (updateDomainResult > 0 ? "Success" : "Failed"));
+                break;
+            
+            case 5:
+                // Xóa domain
+                DomainModel deleteDomain = new DomainModel(3, "", 0, null, null, 0, null, null);
+                int deleteDomainResult = domainDAO.delete(deleteDomain);
+                System.out.println("Delete Domain: " + (deleteDomainResult > 0 ? "Success" : "Failed"));
+                break;
+            
+            default:
+                System.out.println("Invalid test case number.");
+        }
+    }
+    public static void topLevelDomainDAOTest(int i) {
+        TopLevelDomainDAO tldDAO = new TopLevelDomainDAO();
+
+        switch (i) {
+            case 1:
+                // Thêm TLD mới
+                TopLevelDomainModel newTLD = new TopLevelDomainModel(0, ".tech", 1500);
+                int insertResult = tldDAO.insert(newTLD);
+                System.out.println("Insert TLD: " + (insertResult > 0 ? "Success, ID = " + insertResult : "Failed"));
+                break;
+
+            case 2:
+                // Lấy danh sách tất cả TLDs
+                List<TopLevelDomainModel> tlds = tldDAO.selectAll();
+                System.out.println("Danh sách TLDs:");
+                for (TopLevelDomainModel tld : tlds) {
+                    System.out.println(tld);
+                }
+                break;
+            
+            case 3:
+                // Tìm TLD theo ID
+                int tldId = 1; // ID cần tìm
+                TopLevelDomainModel findTLD = new TopLevelDomainModel(tldId, "", 0);
+                TopLevelDomainModel result = tldDAO.selectById(findTLD);
+                System.out.println("TLD found: " + (result != null ? result : "Not found"));
+                break;
+            
+            case 4:
+                // Cập nhật TLD
+                TopLevelDomainModel updateTLD = new TopLevelDomainModel(1, ".tech-updated", 1800);
+                int updateResult = tldDAO.update(updateTLD);
+                System.out.println("Update TLD: " + (updateResult > 0 ? "Success" : "Failed"));
+                break;
+            
+            case 5:
+                // Xóa TLD
+                int deleteTLDId = 8; // ID cần xóa
+                TopLevelDomainModel deleteTLD = new TopLevelDomainModel(deleteTLDId, "", 0);
+                int deleteResult = tldDAO.delete(deleteTLD);
+                System.out.println("Delete TLD: " + (deleteResult > 0 ? "Success" : "Failed"));
+                break;
+
+            default:
+                System.out.println("Invalid test case number.");
+        }
+    }
+    
     public static void UITest() {
-        fLogin.start();
-        // fRegister.start();
-        // fMain.start();
+//        fLogin.start();
+//            fRegister.start();
+//         fMain.start();
     }
 
     public static void main(String[] args) {
-        //  Chọn test case mong muốn (thay số 3 bằng test case bạn cần chạy)
-//        CustomerDAOTest(5);
+      customerDAOTest(2);
+        
+//      domainDAOTest(3);
+
+//        topLevelDomainDAOTest(1);
         
         //  Kiểm tra giao diện UI
-        UITest();
+//        UITest();
     }
 }
