@@ -16,6 +16,12 @@ public class TransactionModel {
     public TransactionModel() {
     }
 
+    public TransactionModel(String transactionId, Integer userId, LocalDate transactionDate) {
+        this.transactionId = transactionId;
+        this.userId = userId;
+        this.transactionDate = transactionDate;
+    }
+
     public TransactionModel(String transactionId, Integer userId, LocalDate transactionDate, PaymentStatusEnum paymentStatus) {
         this.transactionId = transactionId;
         this.userId = userId;
