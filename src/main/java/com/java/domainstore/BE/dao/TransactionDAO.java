@@ -36,7 +36,10 @@ public class TransactionDAO implements DAOInterface<TransactionModel> {
 
             // Bước 4: Thực thi câu lệnh INSERT và lấy số dòng bị ảnh hưởng
             rowsAffected = pst.executeUpdate();
-
+            for(TransactionInfoModel ti : transaction.getTransactionInfos()){
+                TransactionInfoDAO.getInstance().insert(ti);
+                rowsAffected++;
+            }
             // Bước 5: Đóng kết nối
             System.out.println("Thêm dữ liệu thành công !! Có " + rowsAffected + " thay đổi");
             JDBC.closeConnection(con);

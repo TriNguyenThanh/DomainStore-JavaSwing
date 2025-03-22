@@ -35,8 +35,11 @@ public class TestApp {
 //        System.out.println(TransactionDAO.getInstance().selectById(t));
         // Insert
 //        TransactionModel t = new TransactionModel("HD002", 1, LocalDate.parse("2024-03-14"));
+//        TransactionInfoModel ti1 = new TransactionInfoModel("HD002", 1, 123546);
+//        TransactionInfoModel ti2 = new TransactionInfoModel("HD002", 2, 654321);
+//        t.getTransactionInfos().add(ti1);
+//        t.getTransactionInfos().add(ti2);
 //        TransactionDAO.getInstance().insert(t);
-
         //Update
 //        TransactionModel t = new TransactionModel("HD002", 1, LocalDate.parse("2024-05-03"));
 //        TransactionDAO.getInstance().update(t);
