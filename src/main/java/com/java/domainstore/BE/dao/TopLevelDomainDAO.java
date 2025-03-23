@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class TopLevelDomainDAO implements DAOInterface<TopLevelDomainModel> {
+    public static TopLevelDomainDAO getInstance() {
+        return new TopLevelDomainDAO();
+    }
 
     @Override
     public int insert(TopLevelDomainModel t) {
