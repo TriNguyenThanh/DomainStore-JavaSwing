@@ -1,7 +1,6 @@
 package com.java.domainstore.BE.model;
 
 import com.java.domainstore.BE.dao.TopLevelDomainDAO;
-
 import java.sql.Date;
 
 public class DomainModel {
@@ -95,7 +94,12 @@ public class DomainModel {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
+    public TopLevelDomainModel getTopLevelDomainbyId(int id){
+        for(TopLevelDomainModel tld : TopLevelDomainDAO.getInstance().selectAll()){
+            if(tld.getId() == id) return tld;
+        }
+        return null;
+    }
     @Override
     public String toString() {
         return "DomainModel{" +
@@ -108,11 +112,5 @@ public class DomainModel {
                 ", ownerId=" + ownerId +
                 ", createdAt=" + createdAt +
                 '}';
-    }
-    public TopLevelDomainModel getTopLevelDomainbyId(int id){
-        for(TopLevelDomainModel tld : TopLevelDomainDAO.getInstance().selectAll()){
-            if(tld.getId() == id) return tld;
-        }
-        return new TopLevelDomainModel();
     }
 }
