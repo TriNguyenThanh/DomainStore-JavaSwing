@@ -1,6 +1,7 @@
 package com.java.domainstore.FE.model;
 
 public class RegisterModel {
+
     private String name;
     private String phone;
     private String email;
@@ -9,9 +10,10 @@ public class RegisterModel {
     private String cfPass;
 
     public RegisterModel() {
+
     }
 
-    public RegisterModel(String name, String phone, String email, String psID, char[] pass, char[] cfPass) {
+    public RegisterModel(String name, String email, String phone, String psID, char[] pass, char[] cfPass) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,6 +62,10 @@ public class RegisterModel {
         this.pass = pass;
     }
 
+    public void setPass(char[] pass) {
+        this.pass = new String(pass);
+    }
+
     public String getCfPass() {
         return cfPass;
     }
@@ -67,7 +73,8 @@ public class RegisterModel {
     public void setCfPass(String cfPass) {
         this.cfPass = cfPass;
     }
-    
-    
-    
+
+    public void setCfPass(char[] cfpass) {
+        this.cfPass = new String(cfpass);
+    }
 }

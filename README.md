@@ -8,7 +8,7 @@ DomainStore is a desktop application developed using Java Swing, allowing users 
 
 - View domain prices and ownership status.
 - Register and log in to a customer account.
-- Purchase domain names after checking their validity through the WHOIS API.
+- Purchase domain names after checking their validity through the RDAP API.
 - Online payment via VNPay API.
 - Check transaction history after successful payment.
 
@@ -18,7 +18,7 @@ DomainStore is a desktop application developed using Java Swing, allowing users 
 - **Development Tool**: NetBeans
 - **Database**: MySQL
 - **Framework**: Maven
-- **Integrated APIs**: WHOIS, VNPay
+- **Integrated APIs**: RDAP, VNPay
 
 ## Installation and Running the Application
 
@@ -37,7 +37,7 @@ DomainStore is a desktop application developed using Java Swing, allowing users 
    ```
 2. Configure the MySQL database:
    - Create a new database.
-   - Import the `database.sql` file included in the project.
+   - Import the `domain.sql` file included in the project.
    - Update MySQL connection details in the application configuration file.
 3. Run the application using NetBeans or Maven:
    ```sh

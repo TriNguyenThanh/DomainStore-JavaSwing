@@ -1,68 +1,72 @@
 package com.java.domainstore.AnhDu;
 
+import com.java.domainstore.BE.dao.PaymentHistoryDAO;
+import com.java.domainstore.BE.model.PaymentHistoryModel;
+
+import java.util.List;
+
 public class TestApp {
 
     public static void main(String[] args) {
 
         // ------------ PaymentHistory -----------
         // Select All
-//        ArrayList<PaymentHistory> payments = PaymentHistoryDAO.getInstance().selectAll();
-//        for(PaymentHistory p : payments) 
-//            System.out.println(p);
+        List<PaymentHistoryModel> payments = PaymentHistoryDAO.getInstance().selectAll();
+        for(PaymentHistoryModel p : payments)
+            System.out.println(p);
         // SelectById
-//        PaymentHistory p =new PaymentHistory();
-//        p.setId(1);
+//        PaymentHistoryModel p =new PaymentHistoryModel();
+//        p.setPaymentId(1);
 //        System.out.println(PaymentHistoryDAO.getInstance().selectById(p));
         // Insert
-//        PaymentHistory p =new PaymentHistory("HD003", "74389326", 1, PaymentStatus.failed, LocalDate.parse("2024-03-11"));
+//        PaymentHistoryModel p =new PaymentHistoryModel("HD001", "74389326", 1, PaymentStatusEnum.FAILED, LocalDate.parse("2024-03-11"));
 //        PaymentHistoryDAO.getInstance().insert(p);
         //Update
-//        PaymentHistory p = new PaymentHistory(4, "HD003", "74389326", 1, PaymentStatus.completed, LocalDate.parse("2024-03-11"));
+//        PaymentHistoryModel p = new PaymentHistoryModel(2, "HD001", "74389326", 1, PaymentStatusEnum.COMPLETED, LocalDate.parse("2024-03-11"));
 //        PaymentHistoryDAO.getInstance().update(p);
         // Delete
-//        PaymentHistory p =new PaymentHistory();
-//        p.setId(4);
+//        PaymentHistoryModel p =new PaymentHistoryModel();
+//        p.setPaymentId(2);
 //        PaymentHistoryDAO.getInstance().delete(p);
         // ------------ Transaction -----------
         // Select All
-//        ArrayList<Transaction> transactions = TransactionDAO.getInstance().selectAll();
-//        for(Transaction tran : transactions){
+//        ArrayList<TransactionModel> transactions = TransactionDAO.getInstance().selectAll();
+//        for(TransactionModel tran : transactions){
 //            System.out.println(tran);
 //        }
         // SelectById
-//        Transaction t =new Transaction();
+//        TransactionModel t =new TransactionModel();
 //        t.setTransactionId("HD001");
 //        System.out.println(TransactionDAO.getInstance().selectById(t));
         // Insert
-//        Transaction t = new Transaction("HD004", "KH003", LocalDate.parse("2024-03-14"));
-//        ArrayList<DomainModel> domain = new ArrayList<>();
-//        domain.add(new DomainModel(5, "website", "", 3, DomainStatusEnum.AVAILABLE, 2, 0, null));
-//        domain.add(new DomainModel(6, "baitapjava", "", 7, DomainStatusEnum.AVAILABLE, 3, 0, null));
-//        t.setListDomain(domain);
+//        TransactionModel t = new TransactionModel("HD002", 1, LocalDate.parse("2024-03-14"));
+//        TransactionInfoModel ti1 = new TransactionInfoModel("HD002", 1, 123546);
+//        TransactionInfoModel ti2 = new TransactionInfoModel("HD002", 2, 654321);
+//        t.getTransactionInfos().add(ti1);
+//        t.getTransactionInfos().add(ti2);
 //        TransactionDAO.getInstance().insert(t);
-
         //Update
-//        Transaction t = new Transaction("HD004", "KH003", LocalDate.parse("2024-05-03"));
+//        TransactionModel t = new TransactionModel("HD002", 1, LocalDate.parse("2024-05-03"));
 //        TransactionDAO.getInstance().update(t);
         // Delete
-//        Transaction t = new Transaction(); t.setTransactionId("HD004");
+//        TransactionModel t = new TransactionModel(); t.setTransactionId("HD002");
 //        TransactionDAO.getInstance().delete(t);
-        // Transaction Info
+        // ------------ Transaction Info -----------
         // Select All
-//        ArrayList<TransactionInfo> listTransactionInfo = TransactionInfoDAO.getInstance().selectAll();
-//        for(TransactionInfo t : listTransactionInfo) 
+//        ArrayList<TransactionInfoModel> listTransactionInfo = TransactionInfoDAO.getInstance().selectAll();
+//        for(TransactionInfoModel t : listTransactionInfo) 
 //            System.out.println(t);
         // SelectById
-//        TransactionInfo t =new TransactionInfo(); t.setTransactionId("HD001");
+//        TransactionInfoModel t =new TransactionInfoModel(); t.setTransactionId("HD001");
 //        System.out.println(TransactionInfoDAO.getInstance().selectById(t));
         // Insert
-//        TransactionInfo t = new TransactionInfo("HD003", 3, 2, 66666);
+//        TransactionInfoModel t = new TransactionInfoModel("HD001", 2, 66666);
 //        TransactionInfoDAO.getInstance().insert(t);
         //Update
-//        TransactionInfo t = new TransactionInfo("HD003", 3, 2, 78000);
+//        TransactionInfoModel t = new TransactionInfoModel("HD001", 2, 78000);
 //        TransactionInfoDAO.getInstance().update(t);
         // Delete
-//        TransactionInfo t = new TransactionInfo("HD003", 3, 2, 78000);
+//        TransactionInfoModel t = new TransactionInfoModel("HD001", 2, 78000);
 //        TransactionInfoDAO.getInstance().delete(t);
     }
 }
