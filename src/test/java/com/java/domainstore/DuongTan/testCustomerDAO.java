@@ -7,6 +7,9 @@ import com.java.domainstore.BE.dao.TopLevelDomainDAO;
 import com.java.domainstore.BE.model.CustomerModel;
 import com.java.domainstore.BE.model.DomainModel;
 import com.java.domainstore.BE.model.TopLevelDomainModel;
+import com.java.domainstore.FE.view.swing.fLogin;
+import com.java.domainstore.FE.view.swing.fMain;
+import com.java.domainstore.FE.view.swing.fRegister;
 import com.java.domainstore.utils.PasswordUtils;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -20,12 +23,12 @@ public class testCustomerDAO {
         switch (i) {
             case 1:
                 // Thêm người dùng mới với mật khẩu đã băm
-                String plainPassword = "passasd";
+                String plainPassword = "pasasd";
                 String hashedPassword = PasswordUtils.hashedPassword(plainPassword); 
 
                 CustomerModel newUser = new CustomerModel(
-                    0, "Test User", "testuser@gmail.com", 
-                    "0327876533", "082265718564", hashedPassword, 
+                    0, "Tan", "tan@gmail.com", 
+                    "0327876534", "082265218564", hashedPassword, 
                     CustomerModel.Role.user, new Timestamp(System.currentTimeMillis())
                 );
 
@@ -58,7 +61,7 @@ public class testCustomerDAO {
             
             case 5:
                 // Xóa người dùng
-                CustomerModel deleteUser = new CustomerModel(4, "", "", "", "", "", CustomerModel.Role.user, null);
+                CustomerModel deleteUser = new CustomerModel(5, "", "", "", "", "", CustomerModel.Role.user, null);
                 int deleteResult = customerDAO.delete(deleteUser);
                 System.out.println("Delete User: " + deleteResult);
                 break;
@@ -177,19 +180,19 @@ public static void domainDAOTest(int i) {
     }
     
     public static void UITest() {
-//        fLogin.start();
-//            fRegister.start();
-//         fMain.start();
+//      fLogin.start();
+//      fRegister.start();
+//      fMain.start();
     }
 
     public static void main(String[] args) {
-      customerDAOTest(2);
+      customerDAOTest(1);
         
 //      domainDAOTest(3);
 
 //        topLevelDomainDAOTest(1);
         
         //  Kiểm tra giao diện UI
-//        UITest();
+        UITest();
     }
 }
