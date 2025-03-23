@@ -20,6 +20,15 @@ public class CustomerModel {
     public CustomerModel() {
     }
 
+    public CustomerModel(String fullName, String email, String phone, String cccd, String passwordHash, Role role) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.cccd = cccd;
+        this.passwordHash = passwordHash;
+        this.role = role;
+    }
+    
     public CustomerModel(int id, String fullName, String email, String phone, String cccd, String passwordHash, Role role, Timestamp createdAt) {
         this.id = id;
         this.fullName = fullName;
