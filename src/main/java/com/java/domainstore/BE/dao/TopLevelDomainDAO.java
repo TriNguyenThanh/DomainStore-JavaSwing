@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class TopLevelDomainDAO implements DAOInterface<TopLevelDomainModel> {
 
+    public static TopLevelDomainDAO getInstance() {
+        return new TopLevelDomainDAO();
+    }
+
     @Override
     public int insert(TopLevelDomainModel t) {
         String query = "INSERT INTO TopLevelDomain (TLD_text, price) VALUES (?, ?)";
@@ -139,4 +143,6 @@ public class TopLevelDomainDAO implements DAOInterface<TopLevelDomainModel> {
         } 
         return list;
     }
+
+
 }

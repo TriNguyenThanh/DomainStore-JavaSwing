@@ -3,7 +3,7 @@ CREATE DATABASE DomainManagement;
 USE DomainManagement;
 
 -- Bảng người dùng
-CREATE TABLE users (
+CREATE TABLE users (s
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL, 
     email VARCHAR(255) UNIQUE NOT NULL,

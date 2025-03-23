@@ -1,14 +1,19 @@
 package com.java.domainstore.AnhDu;
 
+import com.java.domainstore.BE.dao.PaymentHistoryDAO;
+import com.java.domainstore.BE.model.PaymentHistoryModel;
+
+import java.util.List;
+
 public class TestApp {
 
     public static void main(String[] args) {
 
         // ------------ PaymentHistory -----------
         // Select All
-//        ArrayList<PaymentHistoryModel> payments = PaymentHistoryDAO.getInstance().selectAll();
-//        for(PaymentHistoryModel p : payments) 
-//            System.out.println(p);
+        List<PaymentHistoryModel> payments = PaymentHistoryDAO.getInstance().selectAll();
+        for(PaymentHistoryModel p : payments)
+            System.out.println(p);
         // SelectById
 //        PaymentHistoryModel p =new PaymentHistoryModel();
 //        p.setPaymentId(1);

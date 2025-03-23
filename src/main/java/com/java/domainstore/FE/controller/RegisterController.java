@@ -27,17 +27,19 @@ public class RegisterController {
         if (data.getCfPass().isBlank() || !data.getPass().equals(data.getCfPass())) {
             errorList.add(6);
         }
-        if (!errorList.isEmpty())
-            return errorList;
-        
-        RegisterServices gsv = new RegisterServices();
-        if (gsv.addToDB(data.getName(), data.getPhone(), data.getEmail(), data.getPsID(), data.getPass())) {
-            return errorList;
-        } else {
-            errorList.clear();
-            errorList.add(7);
-            return errorList;
-        }
+//        if (!errorList.isEmpty()) {
+//            return errorList;
+//        }
+
+//        RegisterServices gsv = new RegisterServices();
+//        if (gsv.addToDB(data.getName(), data.getPhone(), data.getEmail(), data.getPsID(), data.getPass())) {
+//            return errorList;
+//        } else {
+//            errorList.clear();
+//            errorList.add(7);
+//            return errorList;
+//        }
+        return errorList;
     }
 
     // sdt phải bắt đầu bằng 0 hoặc +84 và có độ dài là 9

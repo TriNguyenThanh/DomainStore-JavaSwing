@@ -1,4 +1,4 @@
-package com.java.domainstore.FE.view.container;
+package com.java.domainstore.FE.view.component;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
